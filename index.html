@@ -28,7 +28,6 @@
           }
           DeviceOrientationEvent.requestPermission().then((response) => {
             if(response === 'granted') {
-              //. 許可された場合のみイベントハンドラを追加できる
               window.addEventListener('deviceorientation', deviceOrientation );
             }
           })
@@ -45,8 +44,8 @@
     >
       <a-text
         message
-        position="-1.5 1 -4"
-        scale="2 2 2"
+        position="0 0 0"
+        scale="1 1 1"
         color="red">
       </a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
