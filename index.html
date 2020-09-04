@@ -20,6 +20,18 @@
           var errorFunc = (error) => { console.error(error) }
           // navigator.geolocation.getCurrentPosition(successFunc, errorFunc);
           navigator.geolocation.watchPosition(successFunc, errorFunc);
+
+          var deviceOrientation = (orientation) => {
+            var alpha = orientation.alpha;
+
+            this.el.setAttribute('value', alpha);
+          }
+          DeviceOrientationEvent.requestPermission().then((response) => {
+            if(response === 'granted') {
+              //. 許可された場合のみイベントハンドラを追加できる
+              window.addEventListener('deviceorientation', deviceOrientation );
+            }
+          })
         }
       })
     </script>
@@ -33,8 +45,8 @@
     >
       <a-text
         message
-        scale="1 2 1"
         position="-1.5 1 -4"
+        scale="2 2 2"
         color="red">
       </a-text>
       <a-camera gps-camera rotation-reader> </a-camera>
