@@ -7,10 +7,16 @@ AFRAME.registerComponent('message', {
 
       console.log(message);
 
-      this.el.setAttribute('value', message);
+      var { latitude, longitude } = position.coords;
+
+      this.el.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+      this.el.setAttribute('value', 'marker');
     }
     var errorFunc = (error) => { console.error(error) }
-    navigator.geolocation.getCurrentPosition(successFunc, errorFunc);
-    // navigator.geolocation.watchPosition(successFunc, errorFunc);
+    navigator.geolocation.getCurrentPosition(successFunc, errorFunc, {
+      enableHighAccuracy: true,
+      timeout: 8000,
+      maximumAge: 30000,
+    });
   }
 })
