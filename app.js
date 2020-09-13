@@ -14,9 +14,6 @@ window.onload = () => {
       model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
       model.setAttribute('text', { value: tag, color: 'red' });
       model.setAttribute('scale', '10 10 10');
-      model.addEventListener('loaded', () => {
-        window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
-      });
       scene.appendChild(model);
     }
   
@@ -25,7 +22,7 @@ window.onload = () => {
     navigator.geolocation.getCurrentPosition(successFunc, errorFunc, {
       enableHighAccuracy: true,
       timeout: 8000,
-      maximumAge: 0,
+      maximumAge: 30000,
     });
   }
 
