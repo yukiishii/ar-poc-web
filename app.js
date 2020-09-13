@@ -6,10 +6,13 @@ window.onload = () => {
 
     var successFunc = (position) => {
       var { latitude, longitude } = position.coords;
+
+      const tag = $('#input-tag').val();
+      console.log('tag', tag);
   
       const model = document.createElement('a-entity');
       model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-      model.setAttribute('text', { value: 'marker', color: 'red' });
+      model.setAttribute('text', { value: tag, color: 'red' });
       model.setAttribute('scale', '10 10 10');
       model.addEventListener('loaded', () => {
         window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
