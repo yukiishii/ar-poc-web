@@ -1,6 +1,14 @@
 window.onload = () => {
   scene = document.querySelector('a-scene');
 
+  navigator.geolocation.watchPosition((position) => {
+    var { latitude, longitude } = position.coords;
+
+    console.log('latitude', latitude);
+    $('#log-latitude').text(latitude);
+    $('#log-longitude').text(longitude);
+  }, () => {});
+
   const addLocation = () => {
     console.log('addLocation');
 
